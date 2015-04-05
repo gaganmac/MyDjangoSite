@@ -1,0 +1,49 @@
+{% extends "alpha/base.html" %}
+{% load staticfiles %}
+{% load static from staticfiles %}
+
+{% block content %}
+
+<html>
+<head>
+    <title>OrcaFin</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+
+    <!--[if lte IE 8]<script src="{% static 'alpha/css/ie/html5shiv.js' %}"></script><![endif]>
+    <script src="{% static 'alpha/js/jquery.min.js' %}"></script>
+    <script src="{% static 'alpha/js/jquery.dropotron.min.js' %}"></script>
+    <script src="{% static 'alpha/js/jquery.scrollgress.min.js' %}"></script>
+    <script src="{% static 'alpha/js/skel.min.js' %}"></script>
+    <script src="{% static 'alpha/js/skel-layers.min.js' %}"></script>
+    <script src="{% static 'alpha/js/init.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'alpha/css/skel.css' %}">
+    <link rel="stylesheet" href="{% static 'alpha/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'alpha/css/style-wide.css' %}">
+    <!--[if lte IE 8]<link rel="stylesheet" href="{% static 'alpha/css/ie/v8.css' %}" /><![endif]-->
+</head>
+<body class="landing">
+
+<!-- Banner -->
+<section id="banner">
+    <h2>OrcaFin</h2>
+    <p>Tech industry</p>
+    <ul class="actions">
+        <li><a href="#" class="button special">Sign Up</a></li>
+        <li><a href="#" class="button">Learn More</a></li>
+    </ul>
+</section>
+ 
+<!-- Main -->
+<section id="main" class="container">
+
+    <h2>{{industry.title }}</h2>
+</section>
+
+</body>
+</html>
+
+{% endblock %}
+
