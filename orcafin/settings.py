@@ -46,10 +46,10 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
+    #'django.contrib.auth.middleware.SessionAuthenticationMiddleware', Doesn't work with Django 1.6
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.security.SecurityMiddleware',
+    #'django.middleware.security.SecurityMiddleware', Doesn't work with Django 1.6
 )
 
 ROOT_URLCONF = 'orcafin.urls'
@@ -69,6 +69,11 @@ TEMPLATES = [
         },
     },
 ]
+
+# TEMPLATE_DIRS can be removed on upgrading to Django 1.8
+TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR, 'templates').replace('\\','/'),
+)
 
 WSGI_APPLICATION = 'orcafin.wsgi.application'
 
