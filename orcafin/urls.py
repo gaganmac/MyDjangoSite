@@ -1,18 +1,18 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from blog.views import homepage, getContactPage
+from twiliocom.views import AppointmentCreateView, AppointmentDeleteView, AppointmentListView
+from twiliocom.views import AppointmentDetailView, AppointmentUpdateView
 
-urlpatterns = patterns('',
+
+urlpatterns = [
+    url(r'appointments/', include('twiliocom.urls')),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', homepage),
-    url(r'^hello/$', homepage),
-    url(r'^index/$', homepage),
-    url(r'^Company/$', homepage),
-    url(r'^contact.html/$', getContactPage),
-    url(r'^comments/$', include('django_comments.urls')),
-) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    url(r'^$', include('blog.urls')),
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 urlpatterns += staticfiles_urlpatterns()
+
+# url(r'^', include('twiliocom', namespace="twiliocom")),

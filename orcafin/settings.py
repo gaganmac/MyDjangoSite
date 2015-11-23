@@ -28,18 +28,30 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+DEBUG_TOOLBAR_PATCH_SETTINGS = False
 # Application definition
 
-INSTALLED_APPS = (
+DJANGO_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog',
 )
+
+THIRD_PARTY_APPS = (
+    'bootstrap3',
+    'django_forms_bootstrap',
+    'timezone_field',
+)
+
+LOCAL_APPS = (
+    'blog',
+    'twiliocom',
+)
+
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -57,23 +69,26 @@ ROOT_URLCONF = 'orcafin.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
-        'APP_DIRS': True,
+        'DIRS': [
+            os.path.join(BASE_DIR, "templates").replace('\\','/'),
+        ],
+        'APP_DIRS': False,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
             ],
         },
     },
 ]
 
 # TEMPLATE_DIRS can be removed on upgrading to Django 1.8
-TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, 'templates').replace('\\','/'),
-)
+# TEMPLATE_DIRS = (
+#    os.path.join(BASE_DIR, 'templates').replace('\\','/'),
+# )
 
 WSGI_APPLICATION = 'orcafin.wsgi.application'
 
@@ -112,7 +127,6 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static").replace('\\', '/'),
 )
 
-print SETTINGS_PATH, STATICFILES_DIRS
 
 STATIC_ROOT = os.path.dirname(__file__)
 

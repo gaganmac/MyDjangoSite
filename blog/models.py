@@ -4,7 +4,7 @@ class Visitor(models.Model):
     def __unicode__(self):
         return self.name
 
-    class meta(file):
+    class meta():
         app_label = 'blog'
 
     id = models.BigIntegerField(primary_key=True)

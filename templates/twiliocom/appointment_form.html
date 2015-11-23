@@ -1,0 +1,57 @@
+{% extends "twiliocom/twilio_base.html" %}
+
+
+{% block title %}
+    New Reminder
+{% endblock title %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-9">
+            <h1>
+                {% if not object.pk %}
+                    New Appointment
+                {% else %}
+                    Edit Appointment
+                {% endif %}
+            </h1>
+        </div>
+    </div>
+
+    <form class="form-horizontal" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <div class="form_group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <a href="{% url 'list_appointment' %}" class="btn btn-default">Cancel</a>
+                <button type="submit" class="btn btn-primary">
+                    {% if not object.pk %}
+                        Create Appointment
+                    {% else %}
+                        Update Appointment
+                    {% endif %}
+                </button>
+            </div>
+        </div>
+    </form>
+{% endblock %}
+
+
+{% block page_css %}
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css" />
+{% endblock %}
+
+{% block page_js %}
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
+
+<script type="text/javascript">
+    $(function() {
+        $('#id_time').datetimepicker({
+            format: 'MM/DD/YYYY HH:mm',
+            extraFormats: ['YYYY-MM-DD HH:mm:ss'],
+            sideBySide: true
+        });
+    });
+</script>
+{% endblock %}}
